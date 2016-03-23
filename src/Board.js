@@ -79,11 +79,32 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      // console.log('This is this.rows', this.rows());
+      //create a row collection
+      var rowCollect = this.rows();
+
+      //iterate over this.row to see if it works
+      _.each(rowCollect, function(value){
+       
+       })
+
     },
+
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
+     
+      //create a result variable to store boolean
+      // var result = false;
+      // _.each(rowIndex, function(rowItem){
+      //   _.each(rowItem, function(item, index, collection){
+      //     if(item === collection[index + 1]){
+      //       result = true;
+      //     }
+      //   });
+      // });
+    
+      
       return false; // fixme
     },
 
