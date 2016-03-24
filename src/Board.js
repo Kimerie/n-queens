@@ -80,50 +80,35 @@
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
       
-      //create a coordinates variable to hold where the conflict is
-      var conflictCoordinates = [];
-      var result = false;
+      
+      var board = this.rows();
       var count = 0;
-      // console.log('This is rowIndex inside of hasRowConflictAt', rowIndex);
-      //iterate over the rowIndex to look at each value in the array
-      _.each(rowIndex, function(value, index, collection){
-        //determine which index has the conflict
-        //console.log('this is value :', value);
-        if(value === 1){
-          // conflictCoordinates.push(index);
-          count ++
+      
+
+      for(var i = 0; i < board[rowIndex].length; i++){
+        if(board[rowIndex][i] === 1){
+          count++;
         }
         if(count > 1){
-          result = true;
+          return true; 
         }
-     });
-
-      return result;
-
+      }
+      return false;
     },
 
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      //call hasRowConflict to check each rowindex for conflicts
-      //store result in var
-      //if any row has a conflict on the board
-      //return true
-      // var locIndex;
-      var conflict = false;
-      var self =  this;
-   
-      //populate the matrix and store in rowCollect
-      var rowCollect = self.rows();
-      // console.log('this is rowCollect: ', rowCollect);
-        //iterate through each rowindex
-      _.each(rowCollect, function(rowIndex){
-          if(self.hasRowConflictAt(rowIndex)){
-            conflict = true; 
-          }
-      });
+      
+
+      var rowNum = this.get('n');
+      for(var i = 0; i < rowNum; i++){
+        if(this.hasRowConflictAt(i)){
+          return true;
+        }
+      }
         
-      return conflict; // fixme
+      return false; // fixme
     },
 
 
