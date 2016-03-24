@@ -83,17 +83,22 @@
       //create a coordinates variable to hold where the conflict is
       var conflictCoordinates = [];
       var result = false;
-
+      var count = 0;
+      // console.log('This is rowIndex inside of hasRowConflictAt', rowIndex);
       //iterate over the rowIndex to look at each value in the array
       _.each(rowIndex, function(value, index, collection){
         //determine which index has the conflict
+        //console.log('this is value :', value);
         if(value === 1){
-          conflictCoordinates.push(index);
-          result = true
-      
-       }
+          // conflictCoordinates.push(index);
+          count ++
+        }
+        if(count > 1){
+          result = true;
+        }
      });
-      return true;
+
+      return result;
 
     },
 
@@ -107,13 +112,15 @@
       // var locIndex;
       var conflict = false;
       var self =  this;
+   
       //populate the matrix and store in rowCollect
       var rowCollect = self.rows();
+      // console.log('this is rowCollect: ', rowCollect);
         //iterate through each rowindex
       _.each(rowCollect, function(rowIndex){
-        if(_.contains(rowIndex, 1)){
-          conflict = self.hasRowConflictAt(this.rowIndex);
-        }
+          if(self.hasRowConflictAt(rowIndex)){
+            conflict = true; 
+          }
       });
         
       return conflict; // fixme
@@ -126,39 +133,33 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      console.log('We made it into hasColConflictAt!! KEEP GOING!');
-      return false; // fixme
+      console.log('This is our column', colIndex)
+      return true; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      //declare a conflict variable that is set to false which indicates there is no conflict
-      var conflict = false;
-      //set this to self variable
       var self = this;
-      //get all rows and set to rowCollect variable
       var board = self.rows();
-      //console.log('This is rowCollect: ', board);
-      // iterate over every row using a for loop
-      for(var rowIndex = 0 ; rowIndex < board.length; rowIndex++){
-        
-        for(var colIndex = 0; colIndex< board.length; colIndex++){
-            
-          if(_.contains(board[rowIndex][colIndex], 1)){
-            console.log('This is colIndex: ', colIndex);
-            conflict = self.hasColConflictAt(this.board[this.rowIndex][this.colIndex]);
-            console.log('This is muvafuuken conflict:', conflict)
-          
-          }
-        }
-      } 
-        //check value in row at colIndex
-        //allRows[i][colIndex]
+      var colIndex;
+      _.each(board, function(rowIndex, index){
+        colIndex = rowIndex[index].map(function(col, i){
+          return rowIndex.map(function(row){
+            return row(i);
+          });
+          });
+      });
 
-      return conflict; // fixme
+      console.log("colIndex hope this ish works", colIndex)
+
     },
 
 
+          // if(board[rowIndex][colIndex] === 1){
+          //   if(self.hasColConflictAt(board[rowIndex][colIndex])){
+          //     conflict = true;
+          //   };          
+          // }
 
     // Major Diagonals - go from top-left to bottom-right
     // --------------------------------------------------------------
