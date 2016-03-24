@@ -133,25 +133,36 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      console.log('This is our column', colIndex)
-      return true; // fixme
+      // console.log('This is our column', colIndex)
+      var board = this.rows();
+      var count  = 0;
+      var conflict = false;
+
+      _.each(board, function(rows, index){
+        //check the item in the row at the colIndex
+        if(rows[colIndex] === 1){
+          count++;
+        }
+      })
+      if(count > 1){
+        conflict = true;
+      }
+      return conflict; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
       var self = this;
-      var board = self.rows();
-      var colIndex;
-      _.each(board, function(rowIndex, index){
-        colIndex = rowIndex[index].map(function(col, i){
-          return rowIndex.map(function(row){
-            return row(i);
-          });
-          });
+      var board = this.rows();
+      var conflict = false;
+
+      _.each(board, function(rows, index){
+        if(self.hasColConflictAt(index)){
+          conflict = true
+        }
       });
 
-      console.log("colIndex hope this ish works", colIndex)
-
+      return conflict; // fixme
     },
 
 
