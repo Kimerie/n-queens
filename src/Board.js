@@ -100,24 +100,22 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-        //call hasRowConflict to check each rowindex for conflicts
-        //store result in var
+      //call hasRowConflict to check each rowindex for conflicts
+      //store result in var
       //if any row has a conflict on the board
       //return true
-
-
-    // var locIndex;
-    var conflict = false;
-    var self =  this;
-    //populate the matrix and store in rowCollect
-    var rowCollect = self.rows();
-      //iterate through each rowindex
-    _.each(rowCollect, function(rowIndex){
-      if(_.contains(rowIndex, 1)){
-      conflict = self.hasRowConflictAt(this.rowIndex);
-    }
-    });
-      
+      // var locIndex;
+      var conflict = false;
+      var self =  this;
+      //populate the matrix and store in rowCollect
+      var rowCollect = self.rows();
+        //iterate through each rowindex
+      _.each(rowCollect, function(rowIndex){
+        if(_.contains(rowIndex, 1)){
+          conflict = self.hasRowConflictAt(this.rowIndex);
+        }
+      });
+        
       return conflict; // fixme
     },
 
@@ -128,12 +126,36 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+      console.log('We made it into hasColConflictAt!! KEEP GOING!');
       return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      //declare a conflict variable that is set to false which indicates there is no conflict
+      var conflict = false;
+      //set this to self variable
+      var self = this;
+      //get all rows and set to rowCollect variable
+      var board = self.rows();
+      //console.log('This is rowCollect: ', board);
+      // iterate over every row using a for loop
+      for(var rowIndex = 0 ; rowIndex < board.length; rowIndex++){
+        
+        for(var colIndex = 0; colIndex< board.length; colIndex++){
+            
+          if(_.contains(board[rowIndex][colIndex], 1)){
+            console.log('This is colIndex: ', colIndex);
+            conflict = self.hasColConflictAt(this.board[this.rowIndex][this.colIndex]);
+            console.log('This is muvafuuken conflict:', conflict)
+          
+          }
+        }
+      } 
+        //check value in row at colIndex
+        //allRows[i][colIndex]
+
+      return conflict; // fixme
     },
 
 
