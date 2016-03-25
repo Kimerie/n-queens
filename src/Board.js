@@ -161,28 +161,25 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+    hasMajorDiagonalConflictAt: function(majorDiagonalColumnStart) {
+      // console.log(majorDiagonalColumnStart)
+      var rows = this.rows();
       var count = 0;
-      
-      console.log('just checking ',majorDiagonalColumnIndexAtFirstRow);
-      for(var i = 0; i < majorDiagonalColumnIndexAtFirstRow.length; i++){
+      for(var i = 0; i < rows.length; i++){
 
-        var diag = majorDiagonalColumnIndexAtFirstRow[i];
-        
       }
-      return false; // fixme
+            return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      var board = this.rows();
-      var rowNum = this.get('n');
-      // console.log('this is board', board);
-      for(var i = 0; i < rowNum; i++){
-        this.hasMajorDiagonalConflictAt(board[i]);
-      }
-  
-      return false;
+      var row = this.get();
+      console.log('What is this:', this);
+      var yStart = this.attributes.n;
+      var start = row.length-1
+      return this.hasMajorDiagonalConflictAt(start);
+      // console.log(row);        
+     
     },
 
 
