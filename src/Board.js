@@ -34,7 +34,7 @@
     },
 
     _getFirstRowColumnIndexForMinorDiagonalOn: function(rowIndex, colIndex) {
-      return colIndex + rowIndex;
+      return colIndex + rowIndex; 
     },
 
     hasAnyRooksConflicts: function() {
@@ -162,12 +162,27 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+      var count = 0;
+      
+      console.log('just checking ',majorDiagonalColumnIndexAtFirstRow);
+      for(var i = 0; i < majorDiagonalColumnIndexAtFirstRow.length; i++){
+
+        var diag = majorDiagonalColumnIndexAtFirstRow[i];
+        
+      }
       return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      var board = this.rows();
+      var rowNum = this.get('n');
+      // console.log('this is board', board);
+      for(var i = 0; i < rowNum; i++){
+        this.hasMajorDiagonalConflictAt(board[i]);
+      }
+  
+      return false;
     },
 
 
