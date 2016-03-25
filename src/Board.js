@@ -163,12 +163,16 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnStart) {
       // console.log(majorDiagonalColumnStart)
-      var rows = this.rows();
       var count = 0;
-      for(var i = 0; i < rows.length; i++){
-
+      for(var i = 0; i < this.attributes.n ; i++){
+        if(this.get(i)[majorDiagonalColumnStart + i] === 1){
+          count++;
+        }
+        if(count > 1){
+          return true
+        }
       }
-            return false; // fixme
+      return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
